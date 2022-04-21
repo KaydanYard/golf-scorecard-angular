@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, RouterLink, Routes } from '@angular/router';
+import { ScorecardComponent } from './scorecard/scorecard.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: "scorecard", component: ScorecardComponent },
+  { path: "**", component: WelcomeComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

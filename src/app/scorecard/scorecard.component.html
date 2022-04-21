@@ -1,0 +1,78 @@
+<h2>Golf Scorecard</h2>
+<mat-form-field>
+  <mat-label>Choose a Course</mat-label>
+  <mat-select (selectionChange)="courseSelected($event)">
+    <mat-option [value]="18300">
+      Fox Hollow
+    </mat-option>
+
+    <mat-option [value]="11819">
+      Thanksgiving Point
+    </mat-option>
+
+    <mat-option [value]="19002">
+      Spanish Oaks
+    </mat-option>
+  </mat-select>
+</mat-form-field><br>
+
+<mat-form-field>
+  <mat-label>Choose a Tee Type</mat-label>
+  <mat-select (selectionChange)="teeTypeSelected($event)">
+    <mat-option value="pro">Pro</mat-option>
+    <mat-option value="champion">Champion</mat-option>
+    <mat-option value="men">Men</mat-option>
+    <mat-option value="women">Women</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="hole">
+    <th mat-header-cell *matHeaderCellDef> Hole </th>
+    <td mat-cell *matCellDef="let data"> {{data.hole}} </td>
+  </ng-container>
+
+  <!-- Tee Type Column -->
+  <ng-container matColumnDef="tee_type">
+    <th mat-header-cell *matHeaderCellDef> Tee Type </th>
+    <td mat-cell *matCellDef="let data">
+      {{selectedTeeType}}
+    </td>
+  </ng-container>
+
+  <!-- Par Column -->
+  <ng-container matColumnDef="par">
+    <th mat-header-cell *matHeaderCellDef> Par </th>
+    <td mat-cell *matCellDef="let data"> {{data.teeBoxes[teeTypeNum].par}} </td>
+  </ng-container>
+
+  <!-- Yard Column -->
+  <ng-container matColumnDef="yards">
+    <th mat-header-cell *matHeaderCellDef> Yards </th>
+    <td mat-cell *matCellDef="let data"> {{data.teeBoxes[teeTypeNum].yards}} </td>
+  </ng-container>
+
+  <!-- Players Column -->
+  <ng-container matColumnDef="playerOne">
+    <th mat-header-cell *matHeaderCellDef> Player 1 </th>
+    <td mat-cell *matCellDef="let data"><input type="number"></td>
+  </ng-container>
+  <ng-container matColumnDef="playerTwo">
+    <th mat-header-cell *matHeaderCellDef> Player 2 </th>
+    <td mat-cell *matCellDef="let data"><input type="number"></td>
+  </ng-container>
+  <ng-container matColumnDef="playerThree">
+    <th mat-header-cell *matHeaderCellDef> Player 3 </th>
+    <td mat-cell *matCellDef="let data"><input type="number"></td>
+  </ng-container>
+  <ng-container matColumnDef="playerFour">
+    <th mat-header-cell *matHeaderCellDef> Player 4 </th>
+    <td mat-cell *matCellDef="let data"><input type="number"></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
